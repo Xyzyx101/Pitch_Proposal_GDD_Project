@@ -22,3 +22,5 @@ sysinfo.txt
 
 # Ignore emacs backup files
 *~
+
+Thumbs.db
