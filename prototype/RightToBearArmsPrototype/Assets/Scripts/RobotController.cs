@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class RobotController : MonoBehaviour {
-	public float maxSpeed = 4f;
-	float damage = 10;
-	float damageInterval = 1.0f;
+	public float maxSpeed = 5f;
+	float damage = 3.5f;
+	float damageInterval = 0.25f;
 	Animator myAnimator;
 	GameObject bear;
 	bool grabbing;
@@ -33,7 +33,9 @@ public class RobotController : MonoBehaviour {
 		if (grabbing) {
 			grabbingTimer -= Time.deltaTime;
 			if (grabbingTimer < 0) {
-				bear.GetComponent<BearController>().TakeDamage(damage);
+				if (!dying) {
+					bear.GetComponent<BearController>().TakeDamage(damage);
+				}
 				grabbingTimer = damageInterval;
 			}
 		}
@@ -55,9 +57,11 @@ public class RobotController : MonoBehaviour {
 		if (dying) return;
 		if (grabbing) return;
 		if (collision.gameObject.CompareTag ("bear")) {
-			maxSpeed *=2;
+			maxSpeed *= 3;
 			myAnimator.SetTrigger ("grab");
-			bear.GetComponent<BearController>().TakeDamage(damage);
+			if (!dying) {
+				bear.GetComponent<BearController>().TakeDamage(damage);
+			}
 			grabbing = true;
 			grabbingTimer = damageInterval;
 		}

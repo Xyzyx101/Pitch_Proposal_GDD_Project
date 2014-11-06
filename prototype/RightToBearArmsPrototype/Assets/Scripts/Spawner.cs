@@ -41,6 +41,5 @@ public class Spawner : MonoBehaviour {
 		spawning = false;
 		nextWaveTime = Random.Range (minTimeBetweenWaves, maxTimeBetweenWaves);
 		nextWaveSize = Random.Range (minWaveSize, maxWaveSize);
-		print (nextWaveSize);
 	}
 }

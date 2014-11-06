@@ -6,18 +6,18 @@ public class SpiderController : MonoBehaviour {
 	float damage = 30;
 	Animator myAnimator;
 	GameObject bear;
+	bool dying;
 
 	void Start () {
+		dying = false;
 		myAnimator = GetComponent<Animator> ();
 		bear = GameObject.Find ("bear");
 		if (bear.transform.position.x < transform.position.x) {
 			maxSpeed *= -1f;
 		}
 	}
-	
 
 	void Update () {
-
 	}
 
 	void FixedUpdate () {
@@ -26,7 +26,10 @@ public class SpiderController : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.gameObject.CompareTag ("bear")) {
-			bear.GetComponent<BearController>().TakeDamage(damage);
+			if(!dying) {
+				dying = true;
+				bear.GetComponent<BearController>().TakeDamage(damage);
+			}
 			StartCoroutine(Explode());
 		}
 	}
@@ -38,6 +41,7 @@ public class SpiderController : MonoBehaviour {
 	}
 
 	void Kill() {
+		dying = true;
 		StartCoroutine (Explode ());
 	}
 }
