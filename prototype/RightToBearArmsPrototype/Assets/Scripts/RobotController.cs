@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class RobotController : MonoBehaviour {
-	public float maxSpeed = 5f;
+	public float maxSpeed = 7f;
 	float damage = 3.5f;
 	float damageInterval = 0.25f;
 	Animator myAnimator;

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SpiderController : MonoBehaviour {
-	public float maxSpeed = 4.5f;
+	public float maxSpeed = 5f;
 	float damage = 30;
 	Animator myAnimator;
 	GameObject bear;
